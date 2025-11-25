@@ -25,3 +25,17 @@ jobs:
 
       - name: Run tests
         run: make test
+
+name: Example workflow for Node using Snyk
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ 82320c3e-6c5b-49d8-a7f1-87ce1b6d92c6 }}
+        with:
+          args: --severity-threshold=high
